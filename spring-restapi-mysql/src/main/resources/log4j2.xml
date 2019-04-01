@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+
+	<Properties>
+		<Property name="logging.dir">/home/ubuntu/logs</Property>
+	</Properties>
+	 <Appenders>
+		<Console name="ConsoleAppender" target="SYSTEM_OUT">
+			<PatternLayout pattern="%d{MM:dd HH:mm:ss.SSS} [%t] [%level] [%logger{36}] - %msg%n" />
+		</Console>
+		<RollingFile 
+			 name="rollingFile" 
+			 fileName="${logging.dir}/filelog.log"
+			 filePattern="${logging.dir}/filelog_%d{yyyy-MM-dd}.log">
+			
+			<PatternLayout pattern="%d{MM:dd HH:mm:ss.SSS} [%t] [%level] [%logger{36}] - %msg%n" />
+			
+			 <Policies>
+                <!-- Causes a rollover if the log file is older than the current JVM's start time -->
+                <OnStartupTriggeringPolicy />
+                <!-- Causes a rollover once the date/time pattern no longer applies to the active file -->
+                <TimeBasedTriggeringPolicy interval="1" modulate="true" />
+            </Policies>
+            
+		</RollingFile>
+	</Appenders>
+	
+	<Loggers>
+		<Logger name="com.example.springbackend.controller" level="info" additivity="false">
+			<AppenderRef ref="ConsoleAppender"></AppenderRef>
+			<AppenderRef ref="rollingFile"></AppenderRef>
+		</Logger>
+		<Root level="info">
+      		<AppenderRef ref="ConsoleAppender"></AppenderRef>
+			<AppenderRef ref="rollingFile"></AppenderRef>
+    	</Root>
+	</Loggers>
+</Configuration>
