@@ -1,0 +1,28 @@
+
+#config-client profile for dev environment
+spring:
+   application:
+      name: test
+   profiles:
+      active: dev
+   cloud:
+      config:
+         uri: http://localhost:9911
+
+---
+#config-client profile for prod environment
+spring:
+   application:
+      name: sampletest
+   profiles:
+      active: prod
+   cloud:
+      config:
+         uri: http://localhost:9911
+         
+# Disabling security for actuator endPoints
+management:
+   security:
+      enabled: false
+
+

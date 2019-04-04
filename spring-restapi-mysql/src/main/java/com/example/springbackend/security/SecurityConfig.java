@@ -1,20 +1,25 @@
 package com.example.springbackend.security;
 
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-	@Configuration
+@Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		
 		http.authorizeRequests()
+			.antMatchers("/greetmessage").permitAll()
+	        .antMatchers(HttpMethod.POST, "/refresh").permitAll()
 			.antMatchers("/health").permitAll()
 			.antMatchers("/students/{id}").permitAll()
 			.anyRequest()
 			.authenticated()
-			.and().csrf().disable()
+			.and()
+			.csrf().disable()
 			.httpBasic();
+		
 	}
 }
