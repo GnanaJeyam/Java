@@ -5,6 +5,8 @@ import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,16 +22,28 @@ import com.example.springbackend.service.StudentInfo;
 import com.example.springbackend.service.StudentService;
 
 @RestController
+@RefreshScope
 @RequestMapping("/students")
 public class StudentController {
 	
 	private static final Logger log = LogManager.getLogger(StudentController.class);
+	
+	/* Reading values from application-profile.yml file
+	 * which is located in spring config server.*/	
+	@Value("${message: Default Message}")
+	private String message;
 	
 	private StudentService studentService;
 	@Autowired
 	public StudentController(StudentService studentServiceImpl) {
 		
 		this.studentService = studentServiceImpl;
+	}
+	/*Sample end Point to fetch value from the yml located in spring config server.*/
+	@GetMapping("/greet")
+	public String getMessage() {
+		
+		return message;
 	}
 	
 	@GetMapping()

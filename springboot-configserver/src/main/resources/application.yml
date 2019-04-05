@@ -1,0 +1,16 @@
+
+server:
+   port: 9911
+#logging.level.root=debug
+spring:
+   level:
+      root: debug
+   profiles:
+      active: native
+   cloud:
+      config:
+         server:
+            native:
+               searchLocations: file://${user.home}/logs/
+
+#spring.application.name=test
