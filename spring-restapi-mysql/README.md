@@ -152,11 +152,12 @@
       so that our service will talk to config-server**
 
  	###### REFER this project for spring - config server 
-		(spring cloud config-server)[https://github.com/GnanaJeyam/Java/tree/master/springboot-configserver]
+	   [https://github.com/GnanaJeyam/Java/tree/master/springboot-configserver]
 		
 	In spring config server there are some profiling concepts. Main use of this profiling is we can have different     	    properties files based on environment like **dev,test,prod**. In the Spring config-server end we need to add 	 properties files based on this pattern:
 	
-		**_applicationname-profilename.yml or .properties_**
+	###### applicationname-profilename.yml or .properties
+		
 		Ex : test-dev.yml 
 		    - test -> application-name.
 		    - dev -> profile-name.
