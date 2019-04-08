@@ -1,59 +1,59 @@
-REST API Using Spring Boot With MYSQL Database.
+# REST API Using Spring Boot With MYSQL Database, and also configured with SPRING-CLOUD config server, Logger, Actuator, Swagger.
 
-Developing Levels of Rest API	
+## Developing Levels of Rest API
 
- 1. Creating a controller that will perform simple CURD Operation.
+ 1. **Creating a controller that will perform simple CURD Operation.**
 
   RequestTypes :
 	GET, POST, PUT, DELETE.
 
   Endpoints : 
 
-	GET -> http://localhost:9001/students	 
+	> GET -> http://localhost:9001/students	 
 	   This EndPoint will return list of Students from Database.
 	
-	GET with ID -> http://localhost:9001/students/{id}	 	
+	> GET with ID -> http://localhost:9001/students/{id}	 	
 	   This EndPoint will return a specific student based on ID(Primary key).
 				
-	POST -> http://localhost:9001/students
+	> POST -> http://localhost:9001/students
 	   This EndPoint will add Student object to Table.
 	   [Need to Pass required parameters in Request Body.]	 
 	
-	PUT -> http://localhost:9001/students
+	> PUT -> http://localhost:9001/students
 	   This Endpoint will update the existing student from the Database.
 	
-	DELETE -> http://localhost:9001/students/deleteStudent/{id}
+	> DELETE -> http://localhost:9001/students/deleteStudent/{id}
 	   This EndPoint will delete a specific student row object
 	     from Database based on ID.
 
-	REFER : com.example.springbackend.controller    
+	###### REFER : com.example.springbackend.controller    
 	
- 2. For CURD Operation we are using Spring JPA Repository.
+ 2. **For CURD Operation we are using Spring JPA Repository.**
     We need to create Custom Interface and it should extend JPaRepository<Student[Object that need to persisted], Id<Primary Key DataType>> 
 	
-     	REFER : com.example.springbackend.repository
+     	###### REFER : com.example.springbackend.repository
 
- 3. RestController should not talk directly to Repository layer.
-    Instead of we are adding a Service Layer so that it will talk to Repository Layer.
+ 3. **RestController should not talk directly to Repository layer.
+    Instead of we are adding a Service Layer so that it will talk to Repository Layer.**
 
     The Service Layer Implementation class need to annotate with @service Annotation.
      
-     	REFER : com.example.springbackend.service    
+     	###### REFER : com.example.springbackend.service    
 	
- 4. Service Layer should not Directly return the response from Database to Controller.
+ 4. **Service Layer should not Directly return the response from Database to Controller.
     Everytime we need to load the incoming response the dummy POJO object and it
-    should pass to Controller.
+    should pass to Controller.**
 	
-	REFER this class : com.example.springbackend.service.StudentInfo.java [Dummy POJO Object.]
+	###### REFER this class : com.example.springbackend.service.StudentInfo.java [Dummy POJO Object.]
 
- 5. Need to Handle Custom Exception if client sent bad request.
-    Centralizing all exception handling part by using @ControllerAdvice Annotation.
+ 5. **Need to Handle Custom Exception if client sent bad request.
+    Centralizing all exception handling part by using @ControllerAdvice Annotation.**
     
-      	REFER : com.example.springbackend.exception
+      	###### REFER : com.example.springbackend.exception
 
- 6. Adding a basic Authentication to Our REST Endpoint Using Spring Security.
+ 6. **Adding a basic Authentication to Our REST Endpoint Using Spring Security.
     The Authentication class need to Annotate with @Configuration and it also need to extend 
-	WebSecurityConfigurerAdapter.
+	WebSecurityConfigurerAdapter.**
 
     To permit request request for some endpoint and to authenticate request for some endpoint
 	we need to override protected void configure(HttpSecurity http) throws Exception this method
@@ -70,11 +70,11 @@ Developing Levels of Rest API
 	In the above code the url that contains /health and /students/{id} pattern will not be authenticated.
 	   Remaining all other endpoints need to authentication.
 
- 	REFER : com.example.springbackend.security
+ 	###### REFER : com.example.springbackend.security
 
- 7. Adding Health Check endPoint to our REST API by using Spring-actuator.
+ 7. **Adding Health Check endPoint to our REST API by using Spring-actuator.
      To Enable Actuator to our endPoint Just add that dependency in the pom.xml file.
-     Remaining things will be automatically taken care by spring-boot.
+     Remaining things will be automatically taken care by spring-boot.**
 
 	<dependency>
 		<groupId>org.springframework.boot</groupId>
@@ -123,9 +123,9 @@ Developing Levels of Rest API
 			   200 -> SUCCESS -> With Authentication.
 			   401 -> UNAUTHORIZE -> Without Authentication.		
 
- 8. Adding Log4j2 logging API to our application.
+ 8. **Adding Log4j2 logging API to our application.**
 	
-	Logging SEVERITY Example.
+	###### Logging SEVERITY Example.
 	
 	CRITICAL/FATAL - The state that cause the application down or 
 		the situation that may stop the application.
@@ -148,16 +148,24 @@ Developing Levels of Rest API
 		 start and end of the processing of an incoming request or scheduled job.
 
 
+9. **Added Spring Cloud Config server for Externalized Configuration. We need to have spring config-client
+      so that our service will talk to config-server**
 
-
- 		 
+ 	###### REFER this project for spring - config server 
+		(spring cloud config-server)[https://github.com/GnanaJeyam/Java/tree/master/springboot-configserver]
 		
-		
+	In spring config server there are some profiling concepts. Main use of this profiling is we can have different     	    properties files based on environment like **dev,test,prod**. In the Spring config-server end we need to add 	 properties files based on this pattern:
+	
+		**_applicationname-profilename.yml or .properties_**
+		Ex : test-dev.yml 
+		    - test -> application-name.
+		    - dev -> profile-name.
+		    - .yml -> extension. It can also be .properties .
 
 
-
-
-
+10. ** Enalbed Swagger REST API Documentation for our project.**
+	
+	###### REFER : com.example.springbackend.swagger
 
 
       	 	
