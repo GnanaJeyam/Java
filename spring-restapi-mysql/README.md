@@ -164,7 +164,7 @@
 		    - .yml -> extension. It can also be .properties .
 
 
-10. ** Enalbed Swagger REST API Documentation for our project.**
+10. **Enalbed Swagger REST API Documentation for our project.**
 	
 	###### REFER : com.example.springbackend.swagger
 
