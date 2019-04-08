@@ -21,6 +21,8 @@ import com.example.springbackend.model.Student;
 import com.example.springbackend.service.StudentInfo;
 import com.example.springbackend.service.StudentService;
 
+import io.swagger.annotations.ApiOperation;
+
 @RestController
 @RefreshScope
 @RequestMapping("/students")
@@ -39,13 +41,17 @@ public class StudentController {
 		
 		this.studentService = studentServiceImpl;
 	}
-	/*Sample end Point to fetch value from the yml located in spring config server.*/
+	/*Testing end Point to fetch value from the yml located in spring config server.*/
+	@ApiOperation(value = "Testing Endpoint to read the file from Spring config server.",
+		    notes = "Testing end Point to fetch value from the yml located in spring config server.")
 	@GetMapping("/greet")
 	public String getMessage() {
 		
 		return message;
 	}
 	
+	@ApiOperation(value = "Return all the students from the Database.",
+		    notes = "Will return All the Student object from the DB using GET request.")
 	@GetMapping()
 	public List<StudentInfo> getAllStudents() {
 		
@@ -53,7 +59,8 @@ public class StudentController {
 		
 		return studentService.getAllStudents();
 	}
-	
+	@ApiOperation(value = "Find student by id",
+		    notes = "Will return the Student object based on request Id.")
 	@GetMapping("/{id}")
 	public StudentInfo getStudentById(@PathVariable String id) {
 		
@@ -69,6 +76,8 @@ public class StudentController {
 		return studentService.findStudentById(id);
 	}
 	
+	@ApiOperation(value = "Add new student object to the database.",
+		    notes = "Will store the Student object to the database using POST request.")
 	@PostMapping()
 	public StudentInfo addStudent(@RequestBody Student std) {
 		
@@ -77,6 +86,8 @@ public class StudentController {
 		return studentService.addStudent(std);
 	}
 	
+	@ApiOperation(value = "Update the Existing Student in the DB.",
+		    notes = "Update the existing student object with new value in the database using PUT request.")
 	@PutMapping()
 	public StudentInfo updateStudent(@RequestBody Student std) {
 		
@@ -85,6 +96,8 @@ public class StudentController {
 		return studentService.updateStudent( std );
 	}
 	
+	@ApiOperation(value = "Delete the Student object from the DB.",
+		    notes = "Delete the student object based on id from the database using DELETE request.")
 	@DeleteMapping("/deleteStudent/{id}")
 	public boolean deleteStudent(@PathVariable String id) {
 		
