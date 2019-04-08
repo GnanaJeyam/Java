@@ -1,0 +1,27 @@
+# Loco yaml export: Generic nested YAML object
+# Project: test-dev.properties conversion
+# Release: Working copy
+# Locale: dev, Domung
+# Exported by: Unregistered user
+# Exported at: Thu, 04 Apr 2019 11:40:06 +0530
+---
+
+spring:
+#spring jdbc-mysql configuration
+  datasource:
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/student_db
+    username: root
+    password: ubuntu
+#spring hibernate configuration    
+  jpa:
+    hibernate:
+      ddl-auto: update
+    generate-ddl-auto: "true"
+    show-sql: "true"
+#spring security configuration.    
+security:
+  user:
+    name: user
+    password: pass
+...
