@@ -1,3 +1,6 @@
+# For Config-server project :
+# Refer this GitHub link : https://github.com/GnanaJeyam/Java/tree/master/springboot-configserver
+
 
 #config-client profile for dev environment
 spring:
