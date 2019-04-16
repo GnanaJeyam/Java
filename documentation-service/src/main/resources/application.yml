@@ -1,0 +1,4 @@
+# Eureka Properties need to be specify in bootstrap.yml only.
+# Spring looks for those properties in bootstrap.yml file only.
+
+# So I moved All my properties to  bootstrap.yml

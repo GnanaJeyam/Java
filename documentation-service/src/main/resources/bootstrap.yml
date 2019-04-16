@@ -1,0 +1,20 @@
+server:
+  port: 9093
+consumes: application/json
+spring:
+   application:
+      name: documentationservice  
+ 
+eureka:
+  instance:
+    appname: documentationservice
+  client:
+    enabled: true
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+      
+swagger: 
+  config: 
+    refreshrate: 5000
