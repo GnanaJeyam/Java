@@ -99,7 +99,7 @@ public class StudentController {
 	@ApiOperation(value = "Delete the Student object from the DB.",
 		    notes = "Delete the student object based on id from the database using DELETE request.")
 	@DeleteMapping("/deleteStudent/{id}")
-	public boolean deleteStudent(@PathVariable String id) {
+	public Boolean deleteStudent(@PathVariable String id) {
 		
 		log.info("Deleting Student record for this Id ->"+id);
 		
