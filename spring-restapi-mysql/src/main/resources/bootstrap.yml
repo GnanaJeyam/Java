@@ -1,7 +1,10 @@
 # For Config-server project :
 # Refer this GitHub link : https://github.com/GnanaJeyam/Java/tree/master/springboot-configserver
+#server port
+server:
+   port: 9001
 
-
+consumes: application/json
 #config-client profile for dev environment
 spring:
    application:
@@ -19,6 +22,15 @@ spring:
       name: sampletest
    profiles:
       active: prod
+   cloud:
+      config:
+         uri: http://localhost:9911
+---
+spring:
+   application:
+      name: test
+   profiles:
+      active: default
    cloud:
       config:
          uri: http://localhost:9911

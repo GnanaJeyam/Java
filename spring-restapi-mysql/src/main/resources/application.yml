@@ -1,4 +1,11 @@
-#server port
-server:
-   port: 9001
-
+# Eureka Service Discovery Cofiguration.       
+eureka:
+  instance:
+    appname: test
+    statusPageUrlPath: http://192.168.1.249:9001/health
+  client:
+    enabled: true
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
